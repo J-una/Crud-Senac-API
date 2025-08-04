@@ -8,7 +8,7 @@ namespace CrudSenac.Domain.Interfaces
         Task<Response<Cliente>> CriarCliente(Cliente novoCliente);
 
         //Get
-        Task<Response<List<Usuario>>> ListarClientes();
+        Task<Response<List<Cliente>>> ListarClientes();
         Task<Response<Cliente>> BuscarClientePorId(Guid idCliente);
 
         //Update
@@ -16,6 +16,8 @@ namespace CrudSenac.Domain.Interfaces
 
         //Delete
         Task<Response<bool>> InativarCliente(Guid idCliente);
+
+        Task<Response<bool>> AtivarCliente(Guid idCliente);
 
     }
 }

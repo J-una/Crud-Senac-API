@@ -1,4 +1,5 @@
-﻿using CrudSenac.Domain.Entities;
+﻿using CrudSenac.Domain.Dto;
+using CrudSenac.Domain.Entities;
 
 namespace CrudSenac.Domain.Interfaces
 {
@@ -9,13 +10,15 @@ namespace CrudSenac.Domain.Interfaces
         Task<Response<Produto>> CriarProduto(Produto novoProduto);
 
         //Get
-        Task<Response<List<Produto>>> ListarProdutos();
-        Task<Response<Produto>> BuscarProdutoPorId(Guid idProduto);
+        Task<Response<List<ProdutoDto>>> ListarProdutos();
+        Task<Response<ProdutoDto>> BuscarProdutoPorId(Guid idProduto);
 
         //Update
-        Task<Response<Produto>> AtualizarUsuario(Guid idProduto, Usuario produtoAtualizado);
+        Task<Response<Produto>> AtualizarUsuario(Guid idProduto, Produto produtoAtualizado);
 
         //Delete
         Task<Response<bool>> InativarProduto(Guid idProduto);
+
+        Task<Response<bool>> AtivarProduto(Guid idProduto);
     }
 }
