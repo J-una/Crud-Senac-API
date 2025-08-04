@@ -18,5 +18,7 @@ namespace CrudSenac.Domain.Interfaces
         //Delete
         Task<Response<bool>> InativarUsuario(Guid idUsuario);
 
+        Task<Response<bool>> AtivarUsuario(Guid idUsuario);
+
     }
 }

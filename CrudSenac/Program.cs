@@ -1,4 +1,6 @@
 using CrudSenac.Data;
+using CrudSenac.Domain.Interfaces;
+using CrudSenac.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+
+builder.Services.AddScoped<IUsuarioInterface, UsuarioService>();
+builder.Services.AddScoped<IClienteInterface, ClienteService>();
+builder.Services.AddScoped<IProdutoInterface, ProdutoService>();
 
 var app = builder.Build();
 
