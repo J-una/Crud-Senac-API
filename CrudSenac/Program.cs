@@ -22,6 +22,15 @@ builder.Services.AddScoped<IUsuarioInterface, UsuarioService>();
 builder.Services.AddScoped<IClienteInterface, ClienteService>();
 builder.Services.AddScoped<IProdutoInterface, ProdutoService>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy => policy
+            .WithOrigins("http://localhost:4200") // URL do Angular
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,6 +39,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 

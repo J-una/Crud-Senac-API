@@ -97,6 +97,7 @@ namespace CrudSenac.Infrastructure.Services
             usuario.Cpf = usuarioAtualizado.Cpf;
             usuario.Senha = usuarioAtualizado.Senha;
             usuario.DataAlteracao = DateTime.Now;
+            usuario.Perfil = usuarioAtualizado.Perfil;
 
             await _context.SaveChangesAsync();
 
