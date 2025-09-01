@@ -8,12 +8,14 @@ namespace CrudSenac.Domain.Entities
         public Guid IdUsuario { get; set; }
 
         public string Nome { get; set; }
+        public string Email { get; set; }
         public string Cpf { get; set; }
         public string Senha { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime? DataAlteracao { get; set; }
+        public string? ResetToken { get; set; }
+        public DateTime? ResetTokenExpiracao { get; set; }
         public bool Ativo {  get; set; }
-        //Alterar para uma chave estrangeira Perfil
         public string Perfil { get; set; }
     }
 }

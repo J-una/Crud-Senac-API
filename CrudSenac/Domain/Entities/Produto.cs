@@ -19,7 +19,9 @@ namespace CrudSenac.Domain.Entities
         public DateTime? DataAlteracao { get;set; }
         public bool Ativo { get; set; }
         public Guid IdUsuario { get; set; }
+
         [ForeignKey(nameof(IdUsuario))]
-        public Usuario Usuario { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
+        public Usuario? Usuario { get; set; }
     }
 }

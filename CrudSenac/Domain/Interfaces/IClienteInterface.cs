@@ -1,4 +1,5 @@
-﻿using CrudSenac.Domain.Entities;
+﻿using CrudSenac.Domain.Dto;
+using CrudSenac.Domain.Entities;
 
 namespace CrudSenac.Domain.Interfaces
 {
@@ -8,8 +9,8 @@ namespace CrudSenac.Domain.Interfaces
         Task<Response<Cliente>> CriarCliente(Cliente novoCliente);
 
         //Get
-        Task<Response<List<Cliente>>> ListarClientes();
-        Task<Response<Cliente>> BuscarClientePorId(Guid idCliente);
+        Task<Response<List<ClienteDto>>> ListarClientes();
+        Task<Response<ClienteDto>> BuscarClientePorId(Guid idCliente);
 
         //Update
         Task<Response<Cliente>> AtualizarCliente(Guid idCliente, Cliente clienteAtualizado);

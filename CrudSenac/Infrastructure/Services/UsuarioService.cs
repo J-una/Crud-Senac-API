@@ -94,6 +94,7 @@ namespace CrudSenac.Infrastructure.Services
             }
 
             usuario.Nome = usuarioAtualizado.Nome;
+            usuario.Email = usuarioAtualizado.Email;
             usuario.Cpf = usuarioAtualizado.Cpf;
             usuario.Senha = usuarioAtualizado.Senha;
             usuario.DataAlteracao = DateTime.Now;

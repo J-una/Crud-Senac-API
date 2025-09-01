@@ -1,4 +1,5 @@
 ﻿using CrudSenac.Data;
+using CrudSenac.Domain.Dto;
 using CrudSenac.Domain.Entities;
 using CrudSenac.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -64,14 +65,30 @@ namespace CrudSenac.Infrastructure.Services
         }
 
         // GET ALL
-        public async Task<Response<List<Cliente>>> ListarClientes()
+        public async Task<Response<List<ClienteDto>>> ListarClientes()
         {
             var clientes = await _context.Clientes
-                .Where(c => c.Ativo)
-                .Include(c => c.Usuario)
+                .Include(p => p.Usuario)
+                .Where(p => p.Ativo)
+                .Select(p => new ClienteDto
+                {
+                    IdCliente = p.IdCliente,
+                    Nome = p.Nome,
+                    Cpf = p.Cpf,
+                    Email = p.Email,
+                    Senha = p.Senha,
+                    DataCriacao = p.DataCriacao,
+                    DataAlteracao = p.DataAlteracao,
+                    Ativo = p.Ativo,
+                    Usuario = new UsuarioResumoDto
+                    {
+                        IdUsuario = p.Usuario.IdUsuario,
+                        Nome = p.Usuario.Nome
+                    }
+                })
                 .ToListAsync();
 
-            return new Response<List<Cliente>>
+            return new Response<List<ClienteDto>>
             {
                 Dados = clientes,
                 Mensagem = "Lista de clientes ativos.",
@@ -80,15 +97,32 @@ namespace CrudSenac.Infrastructure.Services
         }
 
         // GET BY ID
-        public async Task<Response<Cliente>> BuscarClientePorId(Guid idCliente)
+        public async Task<Response<ClienteDto>> BuscarClientePorId(Guid idCliente)
         {
             var cliente = await _context.Clientes
-                .Include(c => c.Usuario)
-                .FirstOrDefaultAsync(c => c.IdCliente == idCliente);
+               .Include(p => p.Usuario)
+               .Where(p => p.IdCliente == idCliente)
+               .Select(p => new ClienteDto
+               {
+                   IdCliente = p.IdCliente,
+                   Nome = p.Nome,
+                   Cpf = p.Cpf,
+                   Email = p.Email,
+                   Senha = p.Senha,
+                   DataCriacao = p.DataCriacao,
+                   DataAlteracao = p.DataAlteracao,
+                   Ativo = p.Ativo,
+                   Usuario = new UsuarioResumoDto
+                   {
+                       IdUsuario = p.Usuario.IdUsuario,
+                       Nome = p.Usuario.Nome
+                   }
+               })
+               .FirstOrDefaultAsync();
 
             if (cliente == null)
             {
-                return new Response<Cliente>
+                return new Response<ClienteDto>
                 {
                     Dados = null,
                     Mensagem = "Cliente não encontrado.",
@@ -96,7 +130,7 @@ namespace CrudSenac.Infrastructure.Services
                 };
             }
 
-            return new Response<Cliente>
+            return new Response<ClienteDto>
             {
                 Dados = cliente,
                 Mensagem = "Cliente encontrado com sucesso.",
