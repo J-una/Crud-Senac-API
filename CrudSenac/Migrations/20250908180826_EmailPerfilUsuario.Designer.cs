@@ -3,6 +3,7 @@ using System;
 using CrudSenac.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CrudSenac.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250908180826_EmailPerfilUsuario")]
+    partial class EmailPerfilUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.7");
@@ -99,30 +102,6 @@ namespace CrudSenac.Migrations
                     b.HasIndex("IdUsuario");
 
                     b.ToTable("Produtos");
-                });
-
-            modelBuilder.Entity("CrudSenac.Domain.Entities.RecuperacaoSenha", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("ExpiraEm")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("UsuarioId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("Utilizado")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RecuperacoesSenha");
                 });
 
             modelBuilder.Entity("CrudSenac.Domain.Entities.Usuario", b =>
