@@ -22,6 +22,7 @@ namespace CrudSenac.Infrastructure.Services
             {
                 novoCliente.IdCliente = Guid.NewGuid();
                 novoCliente.DataCriacao = DateTime.Now;
+                novoCliente.Email = novoCliente.Email.ToLower();
                 novoCliente.Ativo = true;
 
                 // Garante que o usuário não será recriado
@@ -121,7 +122,7 @@ namespace CrudSenac.Infrastructure.Services
 
             cliente.Nome = clienteAtualizado.Nome;
             cliente.Cpf = clienteAtualizado.Cpf;
-            cliente.Email = clienteAtualizado.Email;
+            cliente.Email = clienteAtualizado.Email.ToLower();
             cliente.Senha = clienteAtualizado.Senha;
             cliente.DataAlteracao = DateTime.Now;
 

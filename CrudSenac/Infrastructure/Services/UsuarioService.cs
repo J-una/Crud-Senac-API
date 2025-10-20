@@ -20,6 +20,7 @@ namespace CrudSenac.Infrastructure.Services
             {
                 novoUsuario.IdUsuario = Guid.NewGuid();
                 novoUsuario.DataCriacao = DateTime.Now;
+                novoUsuario.Email = novoUsuario.Email.ToLower();
                 novoUsuario.Ativo = true;
 
                 _context.Usuarios.Add(novoUsuario);
@@ -96,7 +97,7 @@ namespace CrudSenac.Infrastructure.Services
             usuario.Nome = usuarioAtualizado.Nome;
             usuario.Cpf = usuarioAtualizado.Cpf;
             usuario.DataAlteracao = DateTime.Now;
-            usuario.Email = usuarioAtualizado.Email;
+            usuario.Email = usuarioAtualizado.Email.ToLower();
             usuario.Perfil = usuarioAtualizado.Perfil;
 
             await _context.SaveChangesAsync();
@@ -159,6 +160,16 @@ namespace CrudSenac.Infrastructure.Services
                 Mensagem = "Usuário ativado com sucesso.",
                 Status = true
             };
+        }
+
+        public async Task<bool> EmailExiste(string email)
+        {
+            return await _context.Usuarios.AnyAsync(u => u.Email.ToLower() == email.ToLower());
+        }
+
+        public async Task<bool> CpfExiste(string cpf)
+        {
+            return await _context.Usuarios.AnyAsync(u => u.Cpf == cpf);
         }
     }
 }

@@ -20,5 +20,8 @@ namespace CrudSenac.Domain.Interfaces
 
         Task<Response<bool>> AtivarUsuario(Guid idUsuario);
 
+        Task<bool> EmailExiste(string email);
+
+        Task<bool> CpfExiste(string email);
     }
 }

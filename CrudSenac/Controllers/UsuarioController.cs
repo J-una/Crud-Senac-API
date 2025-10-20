@@ -72,5 +72,23 @@ namespace CrudSenac.Controllers
             return Ok(response);
         }
 
+        [HttpGet("verificar-duplicado")]
+        public async Task<IActionResult> VerificarDuplicado([FromQuery] string? email, [FromQuery] string? cpf)
+        {
+            if (!string.IsNullOrEmpty(email))
+            {
+                bool existeEmail = await _usuarioService.EmailExiste(email);
+                return Ok(new { duplicado = existeEmail });
+            }
+
+            if (!string.IsNullOrEmpty(cpf))
+            {
+                bool existeCpf = await _usuarioService.CpfExiste(cpf);
+                return Ok(new { duplicado = existeCpf });
+            }
+
+            return BadRequest("Informe um email ou CPF para verificação.");
+        }
+
     }
 }

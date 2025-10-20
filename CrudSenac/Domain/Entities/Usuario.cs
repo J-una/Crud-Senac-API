@@ -15,7 +15,6 @@ namespace CrudSenac.Domain.Entities
         public DateTime DataCriacao { get; set; }
         public DateTime? DataAlteracao { get; set; }
         public bool Ativo {  get; set; }
-        //Alterar para uma chave estrangeira Perfil
-        //public string Perfil { get; set; }
+
     }
 }
