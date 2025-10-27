@@ -1,1 +1,6 @@
 /CrudSenac/.vs
+bin/
+obj/
+out/
+Debug/
+Release/
