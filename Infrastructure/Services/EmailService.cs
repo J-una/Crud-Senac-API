@@ -9,7 +9,7 @@ namespace CrudSenac.Infrastructure.Services
         private readonly string _smtpHost = "smtp.gmail.com"; // servidor SMTP
         private readonly int _smtpPort = 587; // porta TLS
         private readonly string _smtpUser = "juanenvioemail@gmail.com";
-        private readonly string _smtpPass = "pxyq tikb ebnd wdag"; // Use senha de app se Gmail
+        private readonly string _smtpPass = ""; // Use senha de app se Gmail
 
         public async Task EnviarEmailAsync(string para, string assunto, string corpo)
         {
