@@ -171,14 +171,16 @@ namespace CrudSenac.Infrastructure.Services
             };
         }
 
-        public async Task<bool> EmailExiste(string email)
+        public async Task<bool> EmailExiste(string email, Guid? id = null)
         {
-            return await _context.Usuarios.AnyAsync(u => u.Email.ToLower() == email.ToLower());
+            return await _context.Usuarios
+                .AnyAsync(u => u.Email.ToLower() == email.ToLower() && (id == null || u.IdUsuario != id));
         }
 
-        public async Task<bool> CpfExiste(string cpf)
+        public async Task<bool> CpfExiste(string cpf, Guid? id = null)
         {
-            return await _context.Usuarios.AnyAsync(u => u.Cpf == cpf);
+            return await _context.Usuarios
+                .AnyAsync(u => u.Cpf == cpf && (id == null || u.IdUsuario != id));
         }
     }
 }

@@ -65,7 +65,8 @@ namespace CrudSenac.Controllers
             {
                 Token = Guid.NewGuid().ToString(), // aqui idealmente você gera um JWT
                 Nome = usuario.Nome,
-                Perfil = usuario.Perfil
+                Perfil = usuario.Perfil,
+                IdUsuario = usuario.IdUsuario
             };
 
             return Ok(response);

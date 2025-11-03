@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 
@@ -20,6 +21,7 @@ namespace CrudSenac.Domain.Entities
         public bool Ativo { get; set; }
         public Guid IdUsuario { get; set; }
         [ForeignKey(nameof(IdUsuario))]
+        [ValidateNever]
         public Usuario Usuario { get; set; }
     }
 }
